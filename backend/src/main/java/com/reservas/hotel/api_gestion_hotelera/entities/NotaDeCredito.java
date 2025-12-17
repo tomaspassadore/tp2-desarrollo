@@ -25,9 +25,4 @@ public class NotaDeCredito {
     
     private Double monto; // [6]
 
-    // Podría incluir una relación a la Factura que corrige (si aplica)
-    // @ManyToOne 
-    // private Factura facturaAsociada; 
-    
-    // ... otros atributos y relaciones
 }

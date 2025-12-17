@@ -85,25 +85,6 @@ public class ReservaServiceImpl implements ReservaService {
 
 
     // ==========================================================
-    // CU11 - Baja lógica de PASAJERO
-    // ==========================================================
-    // @Override
-    // @Transactional
-    // public void darBajaPasajero(Long idPasajero) {
-
-    //     Pasajero pasajero = pasajeroRepository.findById(idPasajero)
-    //             .orElseThrow(() -> new RuntimeException("Pasajero no encontrado"));
-
-    //     if (pasajero.getEstado() == EstadoPasajero.INACTIVO) {
-    //         throw new RuntimeException("El pasajero ya se encuentra dado de baja");
-    //     }
-
-    //     pasajero.setEstado(EstadoPasajero.INACTIVO);
-    //     pasajeroRepository.save(pasajero);
-    // }
-
-
-    // ==========================================================
     // Otros métodos
     // ==========================================================
 

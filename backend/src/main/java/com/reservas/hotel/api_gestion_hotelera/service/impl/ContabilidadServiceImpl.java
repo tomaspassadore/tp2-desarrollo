@@ -42,9 +42,7 @@ public class ContabilidadServiceImpl implements ContabilidadService {
     @Autowired
     private ReservaRepository reservaRepository;
     
-    // ==========================================================
     // MÉTODOS DE FACTURA (CU07)
-    // ==========================================================
     
     @Override
     @Transactional

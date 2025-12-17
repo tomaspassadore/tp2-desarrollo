@@ -8,6 +8,4 @@ import org.springframework.stereotype.Repository;
 @Repository 
 public interface NotaDeCreditoRepository extends CrudRepository<NotaDeCredito, Long> {
 
-    // Ejemplo: Optional<NotaDeCredito> findByIDNota(String idNota);
-
 }

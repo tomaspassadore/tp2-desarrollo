@@ -36,5 +36,4 @@ public interface ReservaService {
 
     void cancelarReserva(Long id);
 
-    //void darBajaPasajero(Long idPasajero);
 }
