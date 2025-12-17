@@ -61,17 +61,17 @@ class PasajeroServiceImplTest {
         pasajero.setDireccion(direccion);
     }
 
-    // ========== Tests para buscarPorId ==========
+    // Tests para buscarPorId
 
     @Test
     void testBuscarPorId_Encontrado() {
-        // Arrange
+        
         when(pasajeroRepository.findById(1L)).thenReturn(Optional.of(pasajero));
 
-        // Act
+        
         Optional<Pasajero> resultado = pasajeroService.buscarPorId(1L);
 
-        // Assert
+        
         assertTrue(resultado.isPresent());
         assertEquals(pasajero, resultado.get());
         assertEquals("Juan", resultado.get().getNombre());
@@ -80,22 +80,22 @@ class PasajeroServiceImplTest {
 
     @Test
     void testBuscarPorId_NoEncontrado() {
-        // Arrange
+        
         when(pasajeroRepository.findById(999L)).thenReturn(Optional.empty());
 
-        // Act
+        
         Optional<Pasajero> resultado = pasajeroService.buscarPorId(999L);
 
-        // Assert
+        
         assertFalse(resultado.isPresent());
         verify(pasajeroRepository).findById(999L);
     }
 
-    // ========== Tests para buscarTodos ==========
+    // Tests para buscarTodos
 
     @Test
     void testBuscarTodos() {
-        // Arrange
+        
         Pasajero pasajero2 = new Pasajero();
         pasajero2.setId(2L);
         pasajero2.setNombre("María");
@@ -103,10 +103,10 @@ class PasajeroServiceImplTest {
         List<Pasajero> listaPasajeros = Arrays.asList(pasajero, pasajero2);
         when(pasajeroRepository.findAll()).thenReturn(listaPasajeros);
 
-        // Act
+        
         Set<Pasajero> resultado = pasajeroService.buscarTodos();
 
-        // Assert
+        
         assertNotNull(resultado);
         assertEquals(2, resultado.size());
         verify(pasajeroRepository).findAll();
@@ -114,44 +114,44 @@ class PasajeroServiceImplTest {
 
     @Test
     void testBuscarTodos_ListaVacia() {
-        // Arrange
+        
         when(pasajeroRepository.findAll()).thenReturn(Collections.emptyList());
 
-        // Act
+        
         Set<Pasajero> resultado = pasajeroService.buscarTodos();
 
-        // Assert
+        
         assertNotNull(resultado);
         assertTrue(resultado.isEmpty());
         verify(pasajeroRepository).findAll();
     }
 
-    // ========== Tests para darDeBajaPasajero ==========
+    // Tests para darDeBajaPasajero
 
     @Test
     void testDarDeBajaPasajero() {
-        // Arrange
+        
         doNothing().when(pasajeroRepository).deleteById(1L);
 
-        // Act
+        
         pasajeroService.darDeBajaPasajero(1L);
 
-        // Assert
+        
         verify(pasajeroRepository).deleteById(1L);
     }
 
-    // ========== Tests para registrarPasajero ==========
+    // Tests para registrarPasajero
 
     @Test
     void testRegistrarPasajero_ConDireccion() {
-        // Arrange
+        
         when(direccionRepository.save(any(Direccion.class))).thenReturn(direccion);
         when(pasajeroRepository.save(any(Pasajero.class))).thenReturn(pasajero);
 
-        // Act
+        
         Pasajero resultado = pasajeroService.registrarPasajero(pasajero);
 
-        // Assert
+        
         assertNotNull(resultado);
         assertEquals("Juan", resultado.getNombre());
         assertEquals(EstadoPasajero.ACTIVO, resultado.getEstado());
@@ -162,14 +162,14 @@ class PasajeroServiceImplTest {
 
     @Test
     void testRegistrarPasajero_SinDireccion() {
-        // Arrange
+        
         pasajero.setDireccion(null);
         when(pasajeroRepository.save(any(Pasajero.class))).thenReturn(pasajero);
 
-        // Act
+        
         Pasajero resultado = pasajeroService.registrarPasajero(pasajero);
 
-        // Assert
+        
         assertNotNull(resultado);
         assertEquals("Juan", resultado.getNombre());
         assertEquals(EstadoPasajero.ACTIVO, resultado.getEstado());
@@ -180,15 +180,15 @@ class PasajeroServiceImplTest {
 
     @Test
     void testRegistrarPasajero_EstadoNoEstablecido() {
-        // Arrange
+        
         pasajero.setEstado(null);
         when(direccionRepository.save(any(Direccion.class))).thenReturn(direccion);
         when(pasajeroRepository.save(any(Pasajero.class))).thenReturn(pasajero);
 
-        // Act
+        
         Pasajero resultado = pasajeroService.registrarPasajero(pasajero);
 
-        // Assert
+        
         assertNotNull(resultado);
         assertEquals(EstadoPasajero.ACTIVO, pasajero.getEstado()); // Verificar que se estableció ACTIVO
         verify(pasajeroRepository).save(any(Pasajero.class));
@@ -196,25 +196,25 @@ class PasajeroServiceImplTest {
 
     @Test
     void testRegistrarPasajero_EstadoInactivo() {
-        // Arrange
+        
         pasajero.setEstado(EstadoPasajero.INACTIVO);
         when(direccionRepository.save(any(Direccion.class))).thenReturn(direccion);
         when(pasajeroRepository.save(any(Pasajero.class))).thenReturn(pasajero);
 
-        // Act
+        
         Pasajero resultado = pasajeroService.registrarPasajero(pasajero);
 
-        // Assert
+        
         assertNotNull(resultado);
         assertEquals(EstadoPasajero.INACTIVO, resultado.getEstado()); // Mantiene el estado establecido
         verify(pasajeroRepository).save(any(Pasajero.class));
     }
 
-    // ========== Tests para actualizarPasajero ==========
+    // Tests para actualizarPasajero
 
     @Test
     void testActualizarPasajero_Exitoso() {
-        // Arrange
+        
         Pasajero pasajeroActualizado = new Pasajero();
         pasajeroActualizado.setNombre("Carlos");
         pasajeroActualizado.setApellido("García");
@@ -237,10 +237,10 @@ class PasajeroServiceImplTest {
         when(direccionRepository.save(any(Direccion.class))).thenReturn(nuevaDireccion);
         when(pasajeroRepository.save(any(Pasajero.class))).thenReturn(pasajero);
 
-        // Act
+        
         Pasajero resultado = pasajeroService.actualizarPasajero(1L, pasajeroActualizado);
 
-        // Assert
+        
         assertNotNull(resultado);
         assertEquals("Carlos", pasajero.getNombre());
         assertEquals("García", pasajero.getApellido());
@@ -258,7 +258,7 @@ class PasajeroServiceImplTest {
 
     @Test
     void testActualizarPasajero_SinDireccion() {
-        // Arrange
+        
         Pasajero pasajeroActualizado = new Pasajero();
         pasajeroActualizado.setNombre("Carlos");
         pasajeroActualizado.setApellido("García");
@@ -274,10 +274,10 @@ class PasajeroServiceImplTest {
         when(pasajeroRepository.findById(1L)).thenReturn(Optional.of(pasajero));
         when(pasajeroRepository.save(any(Pasajero.class))).thenReturn(pasajero);
 
-        // Act
+        
         Pasajero resultado = pasajeroService.actualizarPasajero(1L, pasajeroActualizado);
 
-        // Assert
+        
         assertNotNull(resultado);
         assertEquals("Carlos", pasajero.getNombre());
         verify(direccionRepository, never()).save(any(Direccion.class));
@@ -286,10 +286,9 @@ class PasajeroServiceImplTest {
 
     @Test
     void testActualizarPasajero_NoEncontrado() {
-        // Arrange
+        
         when(pasajeroRepository.findById(999L)).thenReturn(Optional.empty());
 
-        // Act & Assert
         RuntimeException exception = assertThrows(RuntimeException.class, 
             () -> pasajeroService.actualizarPasajero(999L, pasajero));
         assertEquals("Pasajero no encontrado", exception.getMessage());
@@ -298,7 +297,7 @@ class PasajeroServiceImplTest {
 
     @Test
     void testActualizarPasajero_SinEstado() {
-        // Arrange
+        
         Pasajero pasajeroActualizado = new Pasajero();
         pasajeroActualizado.setNombre("Carlos");
         pasajeroActualizado.setApellido("García");
@@ -315,27 +314,27 @@ class PasajeroServiceImplTest {
         when(pasajeroRepository.findById(1L)).thenReturn(Optional.of(pasajero));
         when(pasajeroRepository.save(any(Pasajero.class))).thenReturn(pasajero);
 
-        // Act
+        
         Pasajero resultado = pasajeroService.actualizarPasajero(1L, pasajeroActualizado);
 
-        // Assert
+        
         assertNotNull(resultado);
         assertEquals(EstadoPasajero.ACTIVO, pasajero.getEstado()); // No debe cambiar
         verify(pasajeroRepository).save(pasajero);
     }
 
-    // ========== Tests para buscarHuesped ==========
+    // Tests para buscarHuesped
 
     @Test
     void testBuscarHuesped_PorDni() {
-        // Arrange
+        
         List<Pasajero> listaPasajeros = Arrays.asList(pasajero);
         when(pasajeroRepository.buscarPorDni("12345678")).thenReturn(listaPasajeros);
 
-        // Act
+        
         List<Pasajero> resultado = pasajeroService.buscarHuesped("dni", "12345678");
 
-        // Assert
+        
         assertNotNull(resultado);
         assertEquals(1, resultado.size());
         assertEquals(pasajero, resultado.get(0));
@@ -344,14 +343,14 @@ class PasajeroServiceImplTest {
 
     @Test
     void testBuscarHuesped_PorNombre() {
-        // Arrange
+        
         List<Pasajero> listaPasajeros = Arrays.asList(pasajero);
         when(pasajeroRepository.buscarPorNombre("Juan")).thenReturn(listaPasajeros);
 
-        // Act
+        
         List<Pasajero> resultado = pasajeroService.buscarHuesped("nombre", "Juan");
 
-        // Assert
+        
         assertNotNull(resultado);
         assertEquals(1, resultado.size());
         assertEquals(pasajero, resultado.get(0));
@@ -360,14 +359,14 @@ class PasajeroServiceImplTest {
 
     @Test
     void testBuscarHuesped_PorApellido() {
-        // Arrange
+        
         List<Pasajero> listaPasajeros = Arrays.asList(pasajero);
         when(pasajeroRepository.buscarPorApellido("Pérez")).thenReturn(listaPasajeros);
 
-        // Act
+        
         List<Pasajero> resultado = pasajeroService.buscarHuesped("apellido", "Pérez");
 
-        // Assert
+        
         assertNotNull(resultado);
         assertEquals(1, resultado.size());
         assertEquals(pasajero, resultado.get(0));
@@ -376,7 +375,7 @@ class PasajeroServiceImplTest {
 
     @Test
     void testBuscarHuesped_CriterioInvalido() {
-        // Act & Assert
+
         IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, 
             () -> pasajeroService.buscarHuesped("email", "test@test.com"));
         assertTrue(exception.getMessage().contains("Criterio de búsqueda no válido"));
@@ -384,14 +383,14 @@ class PasajeroServiceImplTest {
 
     @Test
     void testBuscarHuesped_CriterioMayusculas() {
-        // Arrange
+        
         List<Pasajero> listaPasajeros = Arrays.asList(pasajero);
         when(pasajeroRepository.buscarPorDni("12345678")).thenReturn(listaPasajeros);
 
-        // Act
+        
         List<Pasajero> resultado = pasajeroService.buscarHuesped("DNI", "12345678");
 
-        // Assert
+        
         assertNotNull(resultado);
         assertEquals(1, resultado.size());
         verify(pasajeroRepository).buscarPorDni("12345678");
@@ -399,13 +398,13 @@ class PasajeroServiceImplTest {
 
     @Test
     void testBuscarHuesped_ListaVacia() {
-        // Arrange
+        
         when(pasajeroRepository.buscarPorDni("99999999")).thenReturn(Collections.emptyList());
 
-        // Act
+        
         List<Pasajero> resultado = pasajeroService.buscarHuesped("dni", "99999999");
 
-        // Assert
+        
         assertNotNull(resultado);
         assertTrue(resultado.isEmpty());
         verify(pasajeroRepository).buscarPorDni("99999999");
