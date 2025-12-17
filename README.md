@@ -5,6 +5,8 @@
 #### Backend: Java + Spring Boot.
 #### Frontend: Next.js, Typescript y Tailwind.
 #### Base de datos: Postgres (Neon).
+##### En el archivo schema.sql se encuentra el script de creación de base de datos y en poblacion.sql se encuentra el script para poblar la misma.
+#### Nota: al ejecutar la API, automaticamente se crean las tablas juntos con las habitaciones. Para eliminar todos los datos y volver a inicializar las tablas, cambiar la variable "spring.jpa.hibernate.ddl-auto" a create, en lugar de update. Esta se encuentra en backend/src/main/resources/application.properties.
 
 ## Instrucciones para ejecución:
 
