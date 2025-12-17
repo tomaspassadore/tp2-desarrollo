@@ -89,12 +89,6 @@
         primary key (id)
     );
 
-    create table reserva_pasajero (
-        pasajero_id bigint not null,
-        reserva_id bigint not null,
-        primary key (pasajero_id, reserva_id)
-    );
-
     create table tipo_habitacion (
         cantidad_disponible integer not null,
         costo_por_noche numeric(38,2) not null,
@@ -132,13 +126,3 @@
        add constraint FK4cmijq3mjvu3ug5gwq2nkrjb3 
        foreign key (responsable_id) 
        references pasajero;
-
-    alter table if exists reserva_pasajero 
-       add constraint FKtec29t14ui2uycfg6y18jqb7q 
-       foreign key (pasajero_id) 
-       references pasajero;
-
-    alter table if exists reserva_pasajero 
-       add constraint FKgr34vojido14g3ccjxo7yebt4 
-       foreign key (reserva_id) 
-       references reserva;
