@@ -15,5 +15,4 @@ public class Pago {
     private Double vuelto;
     private java.util.Date fechaDeRealizacion;
     
-    // (Relaciones con MedioDePago se añadirán luego)
 }

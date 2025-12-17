@@ -6,5 +6,4 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface PagoRepository extends CrudRepository<Pago, Long> {
-    // Aquí irían métodos específicos para pagos si fueran necesarios
 }

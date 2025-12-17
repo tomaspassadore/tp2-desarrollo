@@ -7,8 +7,4 @@ import org.springframework.stereotype.Repository;
 // La entidad que maneja es Factura, y su clave primaria (ID) es Long
 @Repository 
 public interface FacturaRepository extends CrudRepository<Factura, Long> {
-
-    // Podrías añadir métodos específicos aquí si fuera necesario
-    // Ejemplo: Optional<Factura> findByReservaAsociadaId(Long reservaId);
-
 }

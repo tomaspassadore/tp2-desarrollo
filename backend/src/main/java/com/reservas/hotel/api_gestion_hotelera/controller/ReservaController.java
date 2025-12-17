@@ -6,15 +6,15 @@ import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity; // <-- USADO
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;      // <-- USADO
-import org.springframework.web.bind.annotation.PostMapping;  // <-- USADO
+import org.springframework.web.bind.annotation.PathVariable;      
+import org.springframework.web.bind.annotation.PostMapping;  
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;                          // <-- USADO
-import org.springframework.web.bind.annotation.RequestParam;                     // <-- USADO
+import org.springframework.web.bind.annotation.RequestMapping;                        
+import org.springframework.web.bind.annotation.RequestParam;                     
 import org.springframework.web.bind.annotation.RestController;
 
 import com.reservas.hotel.api_gestion_hotelera.entities.Factura;
@@ -51,9 +51,8 @@ public class ReservaController {
         return new ResponseEntity<>(reservaActualizada, HttpStatus.OK);
     }
     
-    // ==========================================================
+    
     // 2. GET: CONSULTAR RECURSOS (CU05: Mostrar disponibilidad)
-    // ==========================================================
 
     // Endpoint 1 de GET: Obtener todas las reservas (Colección)
     @GetMapping 
@@ -87,9 +86,8 @@ public class ReservaController {
                       .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
     
-    // ==========================================================
+    
     // 3. DELETE: ELIMINAR RECURSOS (CU06: Cancelar reserva) [5]
-    // ==========================================================
 
     // Endpoint 1 de DELETE: Cancelar una reserva (CU06)
    @DeleteMapping("/{id}")
@@ -98,9 +96,8 @@ public class ReservaController {
         return ResponseEntity.noContent().build();
     }
     
-    // ==========================================================
+    
     // 4. PUT: MODIFICAR RECURSOS (CU07: Facturar) [5]
-    // ==========================================================
     
     // 1. PUT: Facturar una reserva (CU07)
 // EL TIPO DE RETORNO CAMBIA A Factura

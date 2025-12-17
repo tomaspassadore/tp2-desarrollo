@@ -26,24 +26,22 @@ public interface ContabilidadService {
     Factura crearFactura(Long reservaId, Double importeTotal, Date fechaDeEmision, TipoFactura tipo);
     
     // Firma 1: Debe devolver Optional<Factura> para búsqueda por ID
-    Optional<Factura> buscarFacturaPorId(Long id); // <--- FIRMA CRÍTICA
+    Optional<Factura> buscarFacturaPorId(Long id); 
     
     // Firma 2: Debe devolver Set<Factura> para todas las búsquedas
-    Set<Factura> buscarTodasFacturas();            // <--- FIRMA CRÍTICA
+    Set<Factura> buscarTodasFacturas();            
 
     // MÉTODOS DE NOTA DE CRÉDITO (Implementan el contrato)
     NotaDeCredito registrarNotaDeCredito(NotaDeCredito nota);
     
     // Firma 3: Debe devolver Optional<NotaDeCredito> para búsqueda por ID
-    Optional<NotaDeCredito> buscarNotaDeCreditoPorId(Long id); // <--- FIRMA CRÍTICA
+    Optional<NotaDeCredito> buscarNotaDeCreditoPorId(Long id); 
     
     // Firma 4: Debe devolver Set<NotaDeCredito> para todas las búsquedas
-    Set<NotaDeCredito> buscarTodasNotasDeCredito();            // <--- FIRMA CRÍTICA
+    Set<NotaDeCredito> buscarTodasNotasDeCredito();            
 
     // MÉTODOS DE PAGO (ya revisados)
     Pago registrarPago(Pago pago);
     Optional<Pago> buscarPagoPorId(Long id);
     
-    // Si tu interfaz incluye este método, debe estar:
-    // Set<Pago> buscarTodosPagos(); 
 }

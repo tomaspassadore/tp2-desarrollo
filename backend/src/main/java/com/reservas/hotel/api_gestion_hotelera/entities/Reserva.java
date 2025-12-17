@@ -1,6 +1,5 @@
 package com.reservas.hotel.api_gestion_hotelera.entities;
 
-import java.time.LocalDate;
 import java.util.Date;
 import java.util.Set;
 

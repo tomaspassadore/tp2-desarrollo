@@ -49,6 +49,5 @@ public class Factura {
     @OneToMany(mappedBy = "factura", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<ItemFactura> items = new ArrayList<>();
 
-    // ... otros atributos y relaciones
 
 }

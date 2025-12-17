@@ -16,5 +16,4 @@ public class Conserje {
     private String usuario;
     private String contrasenia;
     
-    // (Relaciones con Reserva se añadirán luego)
 }
