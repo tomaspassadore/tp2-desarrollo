@@ -16,3 +16,22 @@
 ### 5. Ejecutar "npm run build"
 ### 6. Luego ejecutar "npm run start" para correr de forma local la aplicacion de Next.js
 ### 7. Abrir el navegador en la página http://localhost:3000
+
+## Instrucciones para ejecutar los test (todos):
+
+### 1. cd backend
+### 2. mvn test
+
+## Ejecutar los test de un servicio en especifico:
+
+### Tests de HabitacionServiceImpl
+#### 1. mvn test -Dtest=HabitacionServiceImplTest
+
+### Tests de PasajeroServiceImpl
+#### 2. mvn test -Dtest=PasajeroServiceImplTest
+
+### Tests de ReservaServiceImpl
+#### 3. mvn test -Dtest=ReservaServiceImplTest
+
+### Generar reporte de cobertura con JaCoCo (el reporte se genera en target/site/jacoco/index.html)
+#### 1. mvn clean test jacoco:report
