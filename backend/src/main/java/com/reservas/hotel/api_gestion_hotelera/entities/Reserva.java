@@ -1,5 +1,6 @@
 package com.reservas.hotel.api_gestion_hotelera.entities;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.Set;
 
@@ -51,5 +52,6 @@ public class Reserva {
     @JoinColumn(name = "responsable_id", nullable = false)
     @JsonIgnoreProperties({"reservas", "direccion"})
     private Pasajero responsable;
+
 
 }

@@ -34,5 +34,10 @@ public class Habitacion {
     @JoinColumn(name = "tipo_habitacion_id", nullable = false)
     @JsonIgnoreProperties({"cantidadDisponible"})
     private TipoHabitacion tipoHabitacion;
+
+    public void setId(long l) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'setId'");
+    }
     
 }
